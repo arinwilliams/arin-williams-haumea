@@ -104,3 +104,48 @@ messageForm.addEventListener("submit", (event) => {
   //reset the form inputs
   messageForm.reset();
 });
+
+/*
+GITHUB API CALL & PROJECTS SECTION
+*/
+
+const username = "arinwilliams";
+const apiUrl = `https://api.github.com/users/${username}/repos`;
+
+// My GET request using Fetch
+fetch(apiUrl)
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Response failed");
+    }
+    // Parsed the response as JSON
+    return response.json();
+  })
+  .then((data) => {
+    // Called for the data
+    console.log(data);
+    return data;
+  })
+  .then((repositories) => {
+    console.log("Repositories:", repositories);
+    // Selected the projects section by id
+    const projectSection = document.getElementById("Projects");
+
+    // Queried the projectSection to select the <ul> element
+    const projectList = projectSection.querySelector("ul");
+
+    // Iterated over the repositories array
+    for (let i = 0; i < repositories.length; i++) {
+      // Created a new list item element for each repository
+      const project = document.createElement("li");
+
+      // Set the text content of the list item to the current repository's .name property
+      project.innerText = repositories[i].name;
+
+      // Appended the project element to the projectList
+      projectList.appendChild(project);
+    }
+  })
+  .catch((error) => {
+    console.error("Error in the fetch operation:", error);
+  });
