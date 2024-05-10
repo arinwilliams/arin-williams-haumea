@@ -121,11 +121,11 @@ fetch(apiUrl)
     // Parsed the response as JSON
     return response.json();
   })
-  .then((data) => {
-    // Called for the data
-    console.log(data);
-    return data;
-  })
+//   .then((data) => {
+//     // Called for the data
+//     console.log(data);
+//     return data;
+//   })
   .then((repositories) => {
     console.log("Repositories:", repositories);
     // Selected the projects section by id
