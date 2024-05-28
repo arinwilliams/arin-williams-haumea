@@ -1,8 +1,10 @@
 body {
   background-color: black;
-  padding: 0 20px;
+  padding: 0 10px;
   /* border: 1px solid red; <-- this is how I can see border visually*/
   margin: 0;
+  padding-top: 60px; /* Add padding to avoid content being hidden behind the fixed nav */
+
 }
 
 h1 {
@@ -103,6 +105,7 @@ img {
   text-align: center;
 }
 
+
 /* 
 Note to Mentor: Not sure how CSS code stil works without this part
 nav {
@@ -112,6 +115,19 @@ nav {
 }
   */
 
+  
+  nav {
+    position: fixed; /* Make the nav bar fixed at the top */
+    top: 0;
+    width: 100%;
+    background-color: #000000; /* Dark background for the nav bar */
+    display: flex;
+    justify-content: flex-end; /* Align navigation to the right */
+    padding: 10px 20px;
+    z-index: 1000; /* Ensure the nav bar stays on top of other content */
+    padding: 10px 0;
+  }
+  
 nav ul {
   display: flex;
   align-items: center;
@@ -125,6 +141,8 @@ nav ul {
 
 nav ul li {
   font-size: 14px;
+  margin: 0 10px; /* Add margin to space out the navigation items */
+
 }
 
 #Experience h3 {
@@ -189,54 +207,49 @@ a:active {
 MOBILE DEVICE
 */
 
+/*
+
+/* Mobile device adjustments */
 @media screen and (max-width: 360px) {
-  /*Week 12 assignment: first thing changed is (1) navigation display and (2) colors (below)*/
+  body {
+    padding-top: 200px; /* Add padding to avoid content being hidden behind the fixed nav */
+  }
+  
+  nav {
+    justify-content: center; /* Align navigation to the right */
+  }
+  
   nav ul {
     flex-direction: column;
-    color: white;
+    align-items: center;
   }
 
-  /*Week 12 assignment: second thing changed is (1) picture width and (2) picture border*/
+  nav ul li {
+    margin: 5px 0; /* Adjust margin for better spacing on mobile devices */
+  }
+
   img {
     width: 150px;
-    border: 3px solid #2b7ae2;
+    border: 3px solid white;
   }
-  /*Week 12 assignment: third thing changed is (1) name size and (2) color */
 
   h1 {
-    color: red;
-    font-family: "Poppins", sans-serif;
-    font-weight: 600;
-    font-style: normal;
+    color: white;
     font-size: 28px;
   }
 
-  /*Week 12 assignment: fourth (extra) thing changed is header colors*/
-
-  h2,
-  h3,
-  h4 {
-    color: red;
+  h2, h3, h4 {
+    color: white;
   }
 
-  /*Week 12 assignment: as mentioned above...the first thing changed is nav (above) ul and colors*/
-
-  nav a:link {
-    color: #2b7ae2;
-  }
-
-  nav a:visited {
-    color: gray;
-  }
-
-  nav a:hover {
-    color: yellow;
-  }
-
+  nav a:link,
+  nav a:visited,
+  nav a:hover,
   nav a:active {
-    color: red;
+    color: white;
   }
 }
+
 
 /*@media screen and (max-width: 800px) {
       nav ul {
