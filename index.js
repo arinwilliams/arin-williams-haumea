@@ -60,49 +60,63 @@ const messageForm = document.querySelector("[name='leave_message']");
 
 //Add event listener to form so we can get the user's input values and create new messages using them
 messageForm.addEventListener("submit", (event) => {
-  //prevent the page from reloading
+  // Prevent the page from reloading
   event.preventDefault();
   // console.log("Form submitted");
 
-  //getting values users typed into the inputs
+  // Getting values users typed into the inputs
   const usersName = event.target.usersName.value;
   const usersEmail = event.target.usersEmail.value;
   const usersMessage = event.target.usersMessage.value;
 
-  //select HTML element that contains new messages (ul)
+  // Select HTML element that contains new messages (ul)
   const messageSection = document.querySelector("#messages");
   const messageList = messageSection.querySelector("ul");
 
-  //begin creating the new message element (li)
+  // Begin creating the new message element (li)
   const newMessage = document.createElement("li");
-  //adding the content from user inputs into the li
+  // Adding the content from user inputs into the li
   newMessage.innerHTML = `
 <a href=mailto:${usersEmail}>${usersName}</a>
 <span>${usersMessage}</span>
 `;
 
-  //creating a button to remove the new message
+  // Creating a button to remove the new message
   const removeButton = document.createElement("button");
   removeButton.innerText = "remove";
   removeButton.type = "button";
 
-  //creating an event listener for when user clicks remove button
+  // Creating an event listener for when user clicks remove button
   removeButton.addEventListener("click", function (event) {
-    // using event.target to access parent element of button (newMessage)
+    // Using event.target to access parent element of button (newMessage)
     const entry = event.target.parentNode;
-    // remove the message from the DOM
+    // Remove the message from the DOM
     entry.remove();
+
+    // Check if the message list is empty
+    if (messageList.children.length === 0) {
+      messageSection.style.display = "none";
+      messageSection.style.justifyContent = "center";
+    } else {
+      messageSection.style.display = "flex";
+    }
   });
 
   // Add removeButton to the newMessage
   newMessage.appendChild(removeButton);
 
   // Add new message to the DOM/ HTML
-
   messageList.appendChild(newMessage);
 
-  //reset the form inputs
+  // Reset the form inputs
   messageForm.reset();
+
+  // Check if the message list is empty after adding a new message
+  if (messageList.children.length === 0) {
+    messageSection.style.display = "none";
+  } else {
+    messageSection.style.display = "block";
+  }
 });
 
 /*
